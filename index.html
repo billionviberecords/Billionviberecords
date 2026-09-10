@@ -266,6 +266,14 @@
   .gallery-grid{
     display:grid; grid-template-columns:repeat(3, 1fr); gap:14px;
   }
+  .gallery-grid:has(.gallery-tile:only-child){
+    grid-template-columns:minmax(220px, 360px);
+    justify-content:start;
+  }
+  .gallery-grid:has(.gallery-tile:nth-child(2):last-child){
+    grid-template-columns:repeat(2, minmax(220px, 360px));
+    justify-content:start;
+  }
   .gallery-tile{
     aspect-ratio:1/1; border-radius:12px;
     background:var(--surface);
@@ -572,11 +580,7 @@
   <h2>Gallery</h2>
   <div class="gallery-grid">
     <div class="gallery-tile filled"><img src="gallery-1_1.jpg" alt="Jabillz"></div>
-    <div class="gallery-tile">Add photo 2</div>
-    <div class="gallery-tile">Add photo 3</div>
-    <div class="gallery-tile">Add photo 4</div>
-    <div class="gallery-tile">Add photo 5</div>
-    <div class="gallery-tile">Add photo 6</div>
+    <div class="gallery-tile filled"><img src="gallery-2.jpg" alt="Studio at sunset"></div>
   </div>
 </section>
 
@@ -590,7 +594,7 @@
     <div class="contact-info">
       <div class="row">
         <div class="label">Booking &amp; Inquiries</div>
-        <div class="value">+234 916 344 9000</div>
+        <div class="value"><a href="https://wa.me/2348086952003" target="_blank" rel="noopener" style="color:inherit;">WhatsApp: +234 808 695 2003</a></div>
       </div>
       <div class="row">
         <div class="label">Email</div>
@@ -614,7 +618,7 @@
 <footer class="wrap">
   <div style="display:flex; align-items:center; gap:10px;">
     <img src="logo_1.jpg" alt="Billion Vibe Records" style="height:28px; width:auto; border-radius:4px;">
-    <span>© 2026 Billion Vibe Records. Built independently — no WordPress needed.</span>
+    <span>© 2026 Billion Vibe Records. All rights reserved.</span>
   </div>
   <div class="mono">jabillz</div>
 </footer>
