@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Jabillz — Billion Vibe Records</title>
-<link rel="icon" type="image/jpeg" href="logo_1.jpg">
+<link rel="icon" type="image/png" href="logo-2.png">
 <meta name="description" content="Jabillz — Artist, Songwriter, Producer. Billion Vibe Records. We make good music.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;800;900&family=Sora:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -286,6 +286,49 @@
   .gallery-tile.filled img{width:100%; height:100%; object-fit:cover; transition:transform .5s ease;}
   .gallery-tile.filled:hover img{transform:scale(1.06);}
 
+  /* ANIMATED SECTION BACKGROUNDS (About, Music, Shows, Gallery) */
+  .bg-band{position:relative; overflow:hidden; isolation:isolate; margin:28px 0;}
+  .bg-band .section{padding:76px 0 68px;}
+  .bg-media{
+    position:absolute; inset:-8%; z-index:-3;
+    background-size:cover; background-position:center;
+    will-change:transform;
+    animation:bgDrift 30s ease-in-out infinite alternate;
+  }
+  .bg-about .bg-media{background-image:url('bg-about.jpg'); animation-duration:30s;}
+  .bg-music .bg-media{background-image:url('bg-music.jpg'); animation-duration:34s; animation-direction:alternate-reverse;}
+  .bg-shows .bg-media{background-image:url('bg-shows.jpg'); animation-duration:26s;}
+  .bg-gallery .bg-media{background-image:url('bg-gallery.jpg'); animation-duration:32s; animation-direction:alternate-reverse;}
+  /* dark layer keeps text readable and fades each band into the page */
+  .bg-band::before{
+    content:""; position:absolute; inset:0; z-index:-2; pointer-events:none;
+    background:
+      linear-gradient(180deg, var(--ink) 0%, rgba(20,17,28,0) 16%, rgba(20,17,28,0) 84%, var(--ink) 100%),
+      rgba(20,17,28,0.68);
+  }
+  /* soft blue/red light that sweeps slowly across */
+  .bg-band::after{
+    content:""; position:absolute; inset:0; z-index:-1; pointer-events:none;
+    background:linear-gradient(115deg, transparent 30%, rgba(70,140,255,0.20) 44%, rgba(255,60,80,0.18) 56%, transparent 70%);
+    background-size:250% 100%;
+    mix-blend-mode:screen;
+    animation:bgSweep 16s linear infinite;
+  }
+  @keyframes bgDrift{
+    from{transform:scale(1.06) translate3d(-2.5%, -1.5%, 0);}
+    to{transform:scale(1.20) translate3d(2.5%, 1.5%, 0);}
+  }
+  @keyframes bgSweep{
+    from{background-position:0% 0;}
+    to{background-position:100% 0;}
+  }
+  @media (max-width:1156px){
+    .bg-band .section{padding-left:24px; padding-right:24px;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .bg-media, .bg-band::after{animation:none;}
+  }
+
   /* CONTACT */
   .contact-grid{
     display:grid; grid-template-columns:1fr 1fr; gap:56px;
@@ -409,7 +452,7 @@
 
 <header>
   <nav class="wrap">
-    <a href="#home" class="logo"><img src="logo_1.jpg" alt="Billion Vibe Records logo" class="logo-img"></a>
+    <a href="#home" class="logo"><img src="logo-2.png" alt="Billion Vibe Records logo" class="logo-img"></a>
     <button class="navtoggle" id="navToggle" aria-label="Toggle menu">☰</button>
     <div class="navlinks" id="navLinks">
       <a href="#home">Home</a>
@@ -445,6 +488,8 @@
 <div class="wrap"><div class="divider"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div></div>
 
 <!-- ABOUT -->
+<div class="bg-band bg-about">
+<div class="bg-media" aria-hidden="true"></div>
 <section id="about" class="section wrap reveal">
   <div class="kicker">Biography</div>
   <h2>About Jabillz</h2>
@@ -465,10 +510,13 @@
     </div>
   </div>
 </section>
+</div>
 
 <div class="wrap"><div class="divider"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div></div>
 
 <!-- MUSIC -->
+<div class="bg-band bg-music">
+<div class="bg-media" aria-hidden="true"></div>
 <section id="music" class="section wrap">
   <div class="kicker">Discography</div>
   <h2>Music</h2>
@@ -549,10 +597,13 @@
     <a href="#contact" class="btn btn-ghost">Contact for booking</a>
   </div>
 </section>
+</div>
 
 <div class="wrap"><div class="divider"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div></div>
 
 <!-- SHOWS -->
+<div class="bg-band bg-shows">
+<div class="bg-media" aria-hidden="true"></div>
 <section id="shows" class="section wrap reveal">
   <div class="kicker">Live</div>
   <h2>Shows &amp; Events</h2>
@@ -564,18 +615,29 @@
     <a href="#contact" class="btn btn-ghost">Book a show</a>
   </div>
 </section>
+</div>
 
 <div class="wrap"><div class="divider"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div></div>
 
 <!-- GALLERY -->
+<div class="bg-band bg-gallery">
+<div class="bg-media" aria-hidden="true"></div>
 <section id="gallery" class="section wrap reveal">
   <div class="kicker">Visuals</div>
   <h2>Gallery</h2>
   <div class="gallery-grid">
     <div class="gallery-tile filled"><img src="gallery-1_1.jpg" alt="Jabillz"></div>
     <div class="gallery-tile filled"><img src="gallery-2.jpg" alt="Studio at sunset"></div>
+    <div class="gallery-tile filled"><img src="gallery-3.jpg" alt="Jabillz gallery photo 3" loading="lazy"></div>
+    <div class="gallery-tile filled"><img src="gallery-4.jpg" alt="Jabillz gallery photo 4" loading="lazy"></div>
+    <div class="gallery-tile filled"><img src="gallery-5.jpg" alt="Jabillz gallery photo 5" loading="lazy"></div>
+    <div class="gallery-tile filled"><img src="gallery-6.jpg" alt="Jabillz gallery photo 6" loading="lazy"></div>
+    <div class="gallery-tile filled"><img src="gallery-7.jpg" alt="Jabillz gallery photo 7" loading="lazy"></div>
+    <div class="gallery-tile filled"><img src="gallery-8.JPG" alt="Jabillz gallery photo 8" loading="lazy"></div>
+    <div class="gallery-tile filled"><img src="gallery-9.jpg" alt="Jabillz gallery photo 9" loading="lazy"></div>
   </div>
 </section>
+</div>
 
 <div class="wrap"><div class="divider"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div></div>
 
@@ -610,7 +672,7 @@
 
 <footer class="wrap">
   <div style="display:flex; align-items:center; gap:10px;">
-    <img src="logo_1.jpg" alt="Billion Vibe Records" style="height:28px; width:auto; border-radius:4px;">
+    <img src="logo-2.png" alt="Billion Vibe Records" style="height:28px; width:auto; border-radius:4px;">
     <span>© 2026 Billion Vibe Records. All rights reserved.</span>
   </div>
   <div class="mono">jabillz</div>
